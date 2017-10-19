@@ -25,8 +25,8 @@ while IFS= read -r line; do
 	wget -4 -e robots=off --page-requisites --span-hosts --convert-links --adjust-extension --no-directories --directory-prefix="tmp/$counter" --accept-regex="(jpe?g|gif|png|html?)" "http://localhost:8000/tmp/__INTERNAL__/$counter.html"
 	
 	# So that Calibre won't choke
-	sed -i '.bak' "1s/^/<html><head><h1>$title<\/h1><\/head><body>/" "tmp/$counter/$counter.html"
-	echo '</body></html>' >> "tmp/$title/$counter.html"
+	sed -i'.bak' "1s/^/<html><head><h1>$title<\/h1><\/head><body>/" "tmp/$counter/$counter.html"
+	echo '</body></html>' >> "tmp/$counter/$counter.html"
 	
 	# Index
 	echo "<li><a href='$counter/$counter.html'>$title</a></li>" >> tmp/index.html
