@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -e
+
 if [[ $# -eq 0 ]]; then
 	echo "Missing argument — list name"
 	exit 1
@@ -7,6 +11,20 @@ fi
 rm -r tmp
 mkdir -p tmp/__INTERNAL__
 
+# Use key from environment variable, or just ask user
+mercuryKey="$MERCURY_API_KEY"
+if [ -z "$mercuryKey" ]; then
+	echo 'Set env var MERCURY_API_KEY to avoid this prompt.'
+	while true
+	do
+		printf "\n"
+		read -s -p 'Enter https://mercury.postlight.com/web-parser/ API Key:' mercuryKey
+		if [ ! -z "$mercuryKey" ]; then
+			break
+		fi
+	done
+fi
+
 echo "<html><head></head><body><ol>" > tmp/index.html
 
 counter=0
@@ -14,7 +32,7 @@ while IFS= read -r line; do
 	counter=$[counter+1]
 	
 	# Parse
-	curl --header "x-api-key: REPLACE_THIS_WITH_YOUR_API_KEY" "https://mercury.postlight.com/parser?url=$line" > tmp/__INTERNAL__/$counter.json
+	curl --header "x-api-key: $mercuryKey" "https://mercury.postlight.com/parser?url=$line" > tmp/__INTERNAL__/$counter.json
 	jq -r '.content' tmp/__INTERNAL__/$counter.json > tmp/__INTERNAL__/$counter.html
 	
 	# Cache
