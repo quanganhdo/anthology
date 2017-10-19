@@ -4,7 +4,9 @@ if [[ $# -eq 0 ]]; then
 fi
 
 # One temp dir is enough
-rm -r tmp
+if [ -d 'tmp' ]; then
+	rm -r tmp
+fi
 mkdir -p tmp/__INTERNAL__
 
 echo "<html><head></head><body><ol>" > tmp/index.html
