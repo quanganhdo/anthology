@@ -10,6 +10,7 @@ Get a copy of the script and follow the instructions below.
 
 * Get a free API key for [Mercury Web Parser](https://mercury.postlight.com/web-parser/) and put it in `compile.sh` (Line 17).
 * Install `wget`.
+* Install [`jq`](https://stedolan.github.io/jq/).
 * Install [`Calibre`](https://calibre-ebook.com) and make sure [`ebook-convert`](https://manual.calibre-ebook.com/generated/en/ebook-convert.html) is in your PATH.
 * A way to serve the current working directory via HTTP. I find Python's `SimpleHTTPServer` to be the simplest solution.
 
