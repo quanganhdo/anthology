@@ -16,7 +16,7 @@ while IFS= read -r line; do
 	counter=$[counter+1]
 	
 	# Parse
-	curl --header "x-api-key: REPLACE_THIS_WITH_YOUR_API_KEY" "https://mercury.postlight.com/parser?url=$line" > tmp/__INTERNAL__/$counter.json
+	mercury-parser "$line" > tmp/__INTERNAL__/$counter.json
 	jq -r '.content' tmp/__INTERNAL__/$counter.json > tmp/__INTERNAL__/$counter.html
 	
 	# Cache
