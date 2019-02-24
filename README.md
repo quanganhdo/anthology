@@ -8,7 +8,6 @@ Get a copy of the script and follow the instructions below.
 
 ### Prerequisites
 
-* Get a free API key for [Mercury Web Parser](https://mercury.postlight.com/web-parser/) and put it in `compile.sh` (Line 17).
 * Install `wget`.
 * Install [`Mercury Parser`](https://mercury.postlight.com/web-parser/).
 * Install [`jq`](https://stedolan.github.io/jq/).
