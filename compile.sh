@@ -19,7 +19,7 @@ while IFS= read -r line; do
 	counter=$[counter+1]
 	
 	# Parse
-  mercury-parser "$line" > tmp/__INTERNAL__/$counter.json
+	mercury-parser "$line" > tmp/__INTERNAL__/$counter.json
 	jq -r '.content' tmp/__INTERNAL__/$counter.json > tmp/__INTERNAL__/$counter.html
 	
 	# Cache
